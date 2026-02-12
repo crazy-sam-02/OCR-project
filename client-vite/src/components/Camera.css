@@ -1,0 +1,146 @@
+.camera-container {
+    width: 100%;
+}
+
+.camera-preview {
+    background: var(--bg-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border: 2px solid var(--border);
+}
+
+.camera-placeholder {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.camera-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.camera-text {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.webcam-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+.webcam {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.camera-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.95), transparent);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.capture-btn {
+    min-width: 150px;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+}
+
+.captured-preview {
+    width: 100%;
+    position: relative;
+}
+
+.captured-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.camera-tips {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.tips-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.tips-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+}
+
+.tips-list li {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.tips-list li:hover {
+    background: rgba(99, 102, 241, 0.1);
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .camera-preview {
+        min-height: 300px;
+    }
+
+    .camera-icon {
+        font-size: 3.5rem;
+    }
+
+    .camera-controls {
+        flex-direction: column;
+    }
+
+    .capture-btn {
+        width: 100%;
+    }
+
+    .tips-list {
+        grid-template-columns: 1fr;
+    }
+}

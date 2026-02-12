@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: scriptsense-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  server:
+    build: ./server
+    container_name: scriptsense-server
+    env_file:
+      - ./server/.env
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/scriptsense
+      ALLOWED_ORIGINS: http://localhost:5173
+      # HF settings can be overridden in .env or here
+      HF_TOKEN: ${HF_TOKEN}
+      HF_MODEL: ${HF_MODEL:-google/gemma-3-27b-it}
+      HF_PROVIDER: ${HF_PROVIDER:-featherless-ai}
+      HF_OCR_MODEL: ${HF_OCR_MODEL:-microsoft/trocr-base-printed}
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+
+  client:
+    build:
+      context: ./client-vite
+      args:
+        VITE_API_URL: http://localhost:5000
+    container_name: scriptsense-client
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+
+volumes:
+  mongo-data:
